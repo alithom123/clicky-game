@@ -7,51 +7,51 @@ function App() {
   var imageId=1;
   // var imageUrl="https://upload.wikimedia.org/wikipedia/commons/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg";
 
-  var imageUrl="/A.jpg";
+  var imageUrl="/1.jpg";
   var cardsArray = [
       {
         id: 1,
-        imageUrl: "/A.jpg",
+        imageUrl: "/1.jpg",
         clickCount: 0
       },
       {
         id: 2,
-        imageUrl: "/b.jpg",
+        imageUrl: "/2.jpg",
         clickCount: 0
       },
       {
         id: 3,
-        imageUrl: "/C.jpg",
+        imageUrl: "/3.jpg",
         clickCount: 0
       },
       {
         id: 4,
-        imageUrl: "/D.jpg",
+        imageUrl: "/4.jpg",
         clickCount: 0
       },
       {
         id: 5,
-        imageUrl: "/E.jpg",
+        imageUrl: "/5.jpg",
         clickCount: 0
       },
       {
         id: 6,
-        imageUrl: "/F.jpg",
+        imageUrl: "/6.jpg",
         clickCount: 0
       },
       {
         id: 7,
-        imageUrl: "/G.jpg",
+        imageUrl: "/7.jpg",
         clickCount: 0
       },
       {
         id: 8,
-        imageUrl: "/H.jpg",
+        imageUrl: "/8.jpg",
         clickCount: 0
       },
       {
         id: 9,
-        imageUrl: "/I.jpg",
+        imageUrl: "/9.jpg",
         clickCount: 0
       },
     ];
@@ -78,6 +78,9 @@ function App() {
     var shuffledCardsArray = shuffle(cardsArray);
     console.log("shuffledCardsArray: ", shuffledCardsArray);
 
+
+  
+
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -94,11 +97,17 @@ function App() {
           Learn React
         </a>
       </header> */}
+
+{
+      cardsArray.map(function(card, index) {
+          return <Card imageUrl={card.imageUrl} id={card.id} clickCount={card.clickCount} />
+                })
+}
+      {/* <Card imageUrl={imageUrl} imageId={imageId} />
       <Card imageUrl={imageUrl} imageId={imageId} />
       <Card imageUrl={imageUrl} imageId={imageId} />
       <Card imageUrl={imageUrl} imageId={imageId} />
-      <Card imageUrl={imageUrl} imageId={imageId} />
-      <Card imageUrl={imageUrl} imageId={imageId} />
+      <Card imageUrl={imageUrl} imageId={imageId} /> */}
     </div>
   );
 }
