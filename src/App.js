@@ -8,7 +8,7 @@ function App() {
   // var imageUrl="https://upload.wikimedia.org/wikipedia/commons/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg";
 
   var imageUrl="/A.jpg";
-  var game = [
+  var cardsArray = [
       {
         id: 1,
         imageUrl: "/A.jpg",
@@ -56,11 +56,27 @@ function App() {
       },
     ];
 
-    function shuffleCards(cardsArray) {
-      
-    };
-
+    function shuffle(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+    
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+    
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+    
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+    
+      return array;
+    }
   
+    var shuffledCardsArray = shuffle(cardsArray);
+    console.log("shuffledCardsArray: ", shuffledCardsArray);
 
   return (
     <div className="App">
