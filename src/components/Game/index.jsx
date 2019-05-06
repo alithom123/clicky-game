@@ -1,30 +1,6 @@
 import React from "react";
 import Card from "../Card/index.jsx";
 
-// You can convert a function component like Clock to a class in five steps:
-
-// Create an ES6 class, with the same name, that extends React.Component.
-
-// Add a single empty method to it called render().
-
-// Move the body of the function into the render() method.
-
-// Replace props with this.props in the render() body.
-
-// Delete the remaining empty function declaration.
-
-// class Clock extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <h1>Hello, world!</h1>
-//         <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
-//       </div>
-//     );
-//   }
-// }
-
-
 class Game extends React.Component {
 
   /* Constructor Start */
@@ -152,24 +128,16 @@ class Game extends React.Component {
     this.setState({ username: "", password: "" });
   };
 
+  renderCard(card) {
+    return <Card imageUrl={card.imageUrl} id={card.id} clickCount={card.clickCount} handleCardClick={this.hcc}></Card>
+  }
+
   render() {
     return (
       <div className="App" > {
-        
+
         this.state.cardsArray.map(function (card, index) {
-          return <Card imageUrl={
-            card.imageUrl
-          }
-            id={
-              card.id
-            }
-            clickCount={
-              card.clickCount
-            }
-            handleCardClick={
-              this.hcc
-            }
-          />
+          return this.renderCard(card);
         }, this)
       }
       </div>
