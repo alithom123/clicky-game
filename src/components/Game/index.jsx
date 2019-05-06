@@ -155,6 +155,7 @@ class Game extends React.Component {
   render() {
     return (
       <div className="App" > {
+        
         this.state.cardsArray.map(function (card, index) {
           return <Card imageUrl={
             card.imageUrl
