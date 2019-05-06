@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../Card";
+import Card from "../Card/index.jsx";
 
 // You can convert a function component like Clock to a class in five steps:
 
@@ -118,10 +118,39 @@ class Game extends React.Component {
   //   });
   // }
 
-  handleCardClick() {
+  handleCardClick(cardId) {
     // this.setState({ x: "X" });
     console.log("handleCardClick running");
+    console.log(cardId);
+  };
+
+  hcc = event => {
+    const { id, clickcount } = event.target;
+    console.log(event);
+    console.log(`id = ${id}`);
+    console.log(`clickCount = ${clickcount}`);
   }
+
+  // handle any changes to the input fields
+  handleInputChange = event => {
+    // Pull the name and value properties off of the event.target (the element which triggered the event)
+    const { id, clickcount } = event.target;
+
+    console.log(`id = ${id}`);
+    console.log(`clickCount = ${clickcount}`);
+
+    // Set the state for the appropriate input field
+    // this.setState({
+    //   [name]: value
+    // });
+  };
+
+  // When the form is submitted, prevent the default event and alert the username and password
+  handleFormSubmit = event => {
+    event.preventDefault();
+    alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
+    this.setState({ username: "", password: "" });
+  };
 
   render() {
     return (
@@ -137,7 +166,7 @@ class Game extends React.Component {
               card.clickCount
             }
             handleCardClick={
-              this.handleCardClick
+              this.hcc
             }
           />
         }, this)
