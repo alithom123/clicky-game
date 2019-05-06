@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../Card/index.jsx";
+import shuffle from "../../utilities/shuffle.js";
 
 class Game extends React.Component {
 
@@ -7,28 +8,8 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
 
-    /* Utility function to shuffle */
-    function shuffle(array) {
-      var currentIndex = array.length,
-        temporaryValue, randomIndex;
 
-      // While there remain elements to shuffle...
-      while (0 !== currentIndex) {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-      }
-
-      return array;
-    }
-
-    var cardsArray = [{
+    const cardsArray = [{
       id: 1,
       imageUrl: "/1.jpg",
       clickCount: 0
@@ -75,12 +56,19 @@ class Game extends React.Component {
     },
     ];
 
-    var shuffledCardsArray = shuffle(cardsArray);
-    console.log("shuffledCardsArray: ", shuffledCardsArray);
+    console.log(cardsArray);
+    // Make a copy of the cardsArray that you shuffle.
+    // var shuffledCardsArray = shuffle(cardsArray.slice());
+    // console.log("shuffledCardsArray: ", shuffledCardsArray);
 
     this.state = {
-      cardsArray: cardsArray
+      cardsArray: cardsArray,
+      score: 0,
+      highScore: 0,
+      gamesPlayed: 0,
     };
+
+    console.log(this.state.cardsArray);
   };
   /* Constructor End */
 
@@ -94,11 +82,52 @@ class Game extends React.Component {
   //   });
   // }
 
-  handleCardClick(cardId) {
+  handleCardClick(card) {
     // this.setState({ x: "X" });
-    console.log("handleCardClick running");
-    console.log(cardId);
+    // console.log("handleCardClick running");
+    // alert("handleCardClick running" + JSON.stringify(card));
+    // console.log(cardId);
+
+    const cardsArray = this.state.cardsArray.slice();
+    cardsArray.forEach((eachCard) => {
+      if (eachCard.id === card.id) { // Found Card.
+
+        // If they have already clicked this card, they lose.
+        if (eachCard.clickCount === 1) {
+          // They lose. 
+          if (this.state.score > this.state.highScore) { // Update highScore if necessary.
+            this.state.highScore = this.state.score;
+          }
+          this.state.gamesPlayed += 1;
+          this.setState({
+            cardsArray: cardsArray,
+            gamesPlayed: this.state.gamesPlayed,
+            highScore: this.state.highScore,
+            score: this.state.score
+          });
+
+          alert("you lose");
+
+        } else { // Still playing.
+          eachCard.clickCount += 1;
+          this.state.score += 1;
+
+          this.setState({
+            cardsArray: cardsArray,
+            score: this.state.score
+          });
+        }
+
+        alert(JSON.stringify(this.state.cardsArray))
+      }
+    })
   };
+
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({ squares: squares });
+  }
 
   hcc = event => {
     const { id, clickcount } = event.target;
@@ -130,16 +159,20 @@ class Game extends React.Component {
   };
 
   renderCard(card) {
-    return <Card imageUrl={card.imageUrl} id={card.id} clickCount={card.clickCount} handleCardClick={this.hcc}></Card>
+    return <Card imageUrl={card.imageUrl} id={card.id} onClick={() => this.handleCardClick(card)}></Card>
   }
 
   render() {
     return (
       <div className="App" > {
 
-        this.state.cardsArray.map(function (card, index) {
+        this.state.cardsArray.map((card, index) => {
           return this.renderCard(card);
-        }, this)
+        })
+
+        // this.state.cardsArray.map(function (card, index) {
+        //   return this.renderCard(card);
+        // }, this)
       }
       </div>
     );
