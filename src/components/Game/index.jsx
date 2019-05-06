@@ -105,6 +105,7 @@ class Game extends React.Component {
     console.log(event);
     console.log(`id = ${id}`);
     console.log(`clickCount = ${clickcount}`);
+    alert("Card clicked");
   }
 
   // handle any changes to the input fields
