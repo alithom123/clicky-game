@@ -123,7 +123,7 @@ class Game extends React.Component {
           });
         }
 
-        alert(JSON.stringify(this.state.cardsArray))
+        // alert(JSON.stringify(this.state.cardsArray))
       }
     })
   };
