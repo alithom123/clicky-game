@@ -1,4 +1,5 @@
 import React from "react";
+import Jumbotron from "../Jumbotron/index.jsx"
 import Card from "../Card/index.jsx";
 import shuffle from "../../utilities/shuffle.js";
 
@@ -109,6 +110,8 @@ class Game extends React.Component {
           alert("you lose");
 
         } else { // Still playing.
+
+          // Check for win.
           eachCard.clickCount += 1;
           this.state.score += 1;
 
@@ -164,20 +167,24 @@ class Game extends React.Component {
 
   render() {
     return (
-      <div className="App" > {
+      <div className="Game" >
+        <Jumbotron highScore={this.state.highScore} score={this.state.score} gamesPlayed={this.state.gamesPlayed} />
+        <div className="container">
 
-        this.state.cardsArray.map((card, index) => {
-          return this.renderCard(card);
-        })
+          {
 
-        // this.state.cardsArray.map(function (card, index) {
-        //   return this.renderCard(card);
-        // }, this)
-      }
+            shuffle(this.state.cardsArray.slice()).map((card, index) => {
+              return this.renderCard(card);
+            })
+
+            // this.state.cardsArray.map(function (card, index) {
+            //   return this.renderCard(card);
+            // }, this)
+          }
+        </div>
       </div>
     );
   }
 }
-
 
 export default Game;

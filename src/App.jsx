@@ -9,10 +9,11 @@ function App() {
   return (
     <div className="App" >
       <Navbar />
-      <Jumbotron />
+      <Game />
+      {/* <Jumbotron />
       <div className="container">
         <Game />
-      </div>
+      </div> */}
     </div>
   )
 
