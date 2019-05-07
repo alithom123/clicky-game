@@ -15,10 +15,10 @@ class Card extends React.Component {
             // <a href="" class="custom-card">
             <div onClick={() => this.props.onClick()}>
                 <div className="click-item" >
-                    <img className="card-img-top" src="https://alithom123.github.io/clicky-game/9.jpg" />
+                    <img className="card-img-top" src={this.props.imageUrl} />
                     <div className="card-body">
-                        <p>clicked = {this.state.clickedOnce ? "true" : "false"}</p>
-                        <p>id = {this.props.id}</p>
+                        {/* <p>clicked = {this.state.clickedOnce ? "true" : "false"}</p>
+                        <p>id = {this.props.id}</p> */}
 
                         {/* <h5 className="card-title">Card title</h5> */}
                         {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}

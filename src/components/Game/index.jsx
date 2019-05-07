@@ -3,56 +3,58 @@ import Jumbotron from "../Jumbotron/index.jsx"
 import Card from "../Card/index.jsx";
 import shuffle from "../../utilities/shuffle.js";
 
+
+
 class Game extends React.Component {
 
   /* Constructor Start */
   constructor(props) {
     super(props);
-
+    const githubPageUrl = "https://alithom123.github.io/clicky-game";
 
     const cardsArray = [{
       id: 1,
-      imageUrl: "/1.jpg",
+      imageUrl: githubPageUrl + "/1.jpg",
       clickCount: 0
     },
     {
       id: 2,
-      imageUrl: "/2.jpg",
+      imageUrl: githubPageUrl + "/2.jpg",
       clickCount: 0
     },
     {
       id: 3,
-      imageUrl: "/3.jpg",
+      imageUrl: githubPageUrl + "/3.jpg",
       clickCount: 0
     },
     {
       id: 4,
-      imageUrl: "/4.jpg",
+      imageUrl: githubPageUrl + "/4.jpg",
       clickCount: 0
     },
     {
       id: 5,
-      imageUrl: "/5.jpg",
+      imageUrl: githubPageUrl + "/5.jpg",
       clickCount: 0
     },
     {
       id: 6,
-      imageUrl: "/6.jpg",
+      imageUrl: githubPageUrl + "/6.jpg",
       clickCount: 0
     },
     {
       id: 7,
-      imageUrl: "/7.jpg",
+      imageUrl: githubPageUrl + "/7.jpg",
       clickCount: 0
     },
     {
       id: 8,
-      imageUrl: "/8.jpg",
+      imageUrl: githubPageUrl + "/8.jpg",
       clickCount: 0
     },
     {
       id: 9,
-      imageUrl: "../../public/9.jpg",
+      imageUrl: githubPageUrl + "/9.jpg",
       clickCount: 0
     },
     ];
@@ -107,7 +109,7 @@ class Game extends React.Component {
             score: this.state.score
           });
 
-          alert("you lose");
+          alert("You lost. Please play again!");
 
         } else { // Still playing.
 
@@ -137,7 +139,7 @@ class Game extends React.Component {
     console.log(event);
     console.log(`id = ${id}`);
     console.log(`clickCount = ${clickcount}`);
-    alert("Card clicked");
+    // alert("Card clicked");
   }
 
   // handle any changes to the input fields
@@ -145,8 +147,8 @@ class Game extends React.Component {
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { id, clickcount } = event.target;
 
-    console.log(`id = ${id}`);
-    console.log(`clickCount = ${clickcount}`);
+    // console.log(`id = ${id}`);
+    // console.log(`clickCount = ${clickcount}`);
 
     // Set the state for the appropriate input field
     // this.setState({
