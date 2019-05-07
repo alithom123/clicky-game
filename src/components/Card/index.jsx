@@ -15,7 +15,7 @@ class Card extends React.Component {
             // <a href="" class="custom-card">
             <div onClick={() => this.props.onClick()}>
                 <div className="click-item" >
-                    <img className="card-img-top" src={this.props.imageUrl} />
+                    <img className="card-img-top" src="https://alithom123.github.io/clicky-game/9.jpg" />
                     <div className="card-body">
                         <p>clicked = {this.state.clickedOnce ? "true" : "false"}</p>
                         <p>id = {this.props.id}</p>

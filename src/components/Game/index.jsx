@@ -52,7 +52,7 @@ class Game extends React.Component {
     },
     {
       id: 9,
-      imageUrl: "/9.jpg",
+      imageUrl: "../../public/9.jpg",
       clickCount: 0
     },
     ];
@@ -170,36 +170,36 @@ class Game extends React.Component {
       <div className="Game" >
         <Jumbotron highScore={this.state.highScore} score={this.state.score} gamesPlayed={this.state.gamesPlayed} />
         <div className="container">
-          <div class="row">
-            <div class="col-sm-4">
+          <div className="row">
+            <div className="col-sm-4">
               <Card imageUrl={this.state.cardsArray[0].imageUrl} id={this.state.cardsArray[0].id} onClick={() => this.handleCardClick(this.state.cardsArray[0])}></Card>
             </div>
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card imageUrl={this.state.cardsArray[1].imageUrl} id={this.state.cardsArray[1].id} onClick={() => this.handleCardClick(this.state.cardsArray[1])}></Card>
             </div>
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card imageUrl={this.state.cardsArray[2].imageUrl} id={this.state.cardsArray[2].id} onClick={() => this.handleCardClick(this.state.cardsArray[2])}></Card>
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-4">
+          <div className="row">
+            <div className="col-sm-4">
               <Card imageUrl={this.state.cardsArray[3].imageUrl} id={this.state.cardsArray[3].id} onClick={() => this.handleCardClick(this.state.cardsArray[3])}></Card>
             </div>
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card imageUrl={this.state.cardsArray[4].imageUrl} id={this.state.cardsArray[4].id} onClick={() => this.handleCardClick(this.state.cardsArray[4])}></Card>
             </div>
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card imageUrl={this.state.cardsArray[5].imageUrl} id={this.state.cardsArray[5].id} onClick={() => this.handleCardClick(this.state.cardsArray[5])}></Card>
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-4">
+          <div className="row">
+            <div className="col-sm-4">
               <Card imageUrl={this.state.cardsArray[6].imageUrl} id={this.state.cardsArray[6].id} onClick={() => this.handleCardClick(this.state.cardsArray[6])}></Card>
             </div>
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card imageUrl={this.state.cardsArray[7].imageUrl} id={this.state.cardsArray[7].id} onClick={() => this.handleCardClick(this.state.cardsArray[7])}></Card>
             </div>
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card imageUrl={this.state.cardsArray[8].imageUrl} id={this.state.cardsArray[8].id} onClick={() => this.handleCardClick(this.state.cardsArray[8])}></Card>
             </div>
           </div>
