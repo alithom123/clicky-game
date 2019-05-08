@@ -14,37 +14,37 @@ class Game extends React.Component {
 
     var cardsArray = [{
       id: 1,
-      imageUrl: "/1bootstrap.png",
+      imageUrl: githubPageUrl + "/1bootstrap.png",
       clickCount: 0
     },
     {
       id: 2,
-      imageUrl: "/2html.png",
+      imageUrl: githubPageUrl + "/2html.png",
       clickCount: 0
     },
     {
       id: 3,
-      imageUrl: "/3javascript.png",
+      imageUrl: githubPageUrl + "/3javascript.png",
       clickCount: 0
     },
     {
       id: 4,
-      imageUrl: "/4mongo.png",
+      imageUrl: githubPageUrl + "/4mongo.png",
       clickCount: 0
     },
     {
       id: 5,
-      imageUrl: "/5nodejs.png",
+      imageUrl: githubPageUrl + "/5nodejs.png",
       clickCount: 0
     },
     {
       id: 6,
-      imageUrl: "/6react.png",
+      imageUrl: githubPageUrl + "/6react.png",
       clickCount: 0
     },
     {
       id: 7,
-      imageUrl: "/7css.png",
+      imageUrl: githubPageUrl + "/7css.png",
       clickCount: 0
     },
     {
