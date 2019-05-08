@@ -12,7 +12,7 @@ class Game extends React.Component {
     super(props);
     const githubPageUrl = "https://alithom123.github.io/clicky-game";
 
-    const cardsArray = [{
+    var cardsArray = [{
       id: 1,
       imageUrl: githubPageUrl + "/1.jpg",
       clickCount: 0
@@ -59,19 +59,27 @@ class Game extends React.Component {
     },
     ];
 
-    console.log(cardsArray);
+    const shuffledCardsArray = shuffle(cardsArray.slice());
+    // shuffledCardsArray = shuffle(shuffledCardsArray);
+
+    // console.log(cardsArray);
+    // console.log(shuffledCardsArray);
     // Make a copy of the cardsArray that you shuffle.
     // var shuffledCardsArray = shuffle(cardsArray.slice());
     // console.log("shuffledCardsArray: ", shuffledCardsArray);
 
+
     this.state = {
       cardsArray: cardsArray,
+      shuffledCardsArray: shuffledCardsArray,
       score: 0,
       highScore: 0,
       gamesPlayed: 0,
+      totalClickCount: 0,
     };
 
-    console.log(this.state.cardsArray);
+    console.log("State = ");
+    console.log(this.state);
   };
   /* Constructor End */
 
@@ -91,35 +99,78 @@ class Game extends React.Component {
     // alert("handleCardClick running" + JSON.stringify(card));
     // console.log(cardId);
 
+    // If it's their first click then reset score to 0.
+    // if (this.state.totalClickCount === 0) {
+    //   this.state.score = 0;
+    //   this.setState({
+    //     score: 0,
+    //   })
+    // }
+
     const cardsArray = this.state.cardsArray.slice();
+    // const cardsArray = this.state.shuffledCardsArray.slice();
     cardsArray.forEach((eachCard) => {
       if (eachCard.id === card.id) { // Found Card.
 
+        this.state.totalClickCount += 1;
         // If they have already clicked this card, they lose.
         if (eachCard.clickCount === 1) {
+
           // They lose. 
           if (this.state.score > this.state.highScore) { // Update highScore if necessary.
             this.state.highScore = this.state.score;
           }
           this.state.gamesPlayed += 1;
-          this.setState({
-            cardsArray: cardsArray,
-            gamesPlayed: this.state.gamesPlayed,
-            highScore: this.state.highScore,
-            score: this.state.score
+
+          // Shuffle cards to play again.
+          this.state.shuffledCardsArray = shuffle(this.state.cardsArray.slice());
+
+          // Reset clickCount on each card to 0.
+          cardsArray.map((c) => {
+            c.clickCount = 0;
+            return c;
           });
 
           alert("You lost. Please play again!");
+          this.state.score = 0;
+
+          // Set state to render new game.
+          this.setState({
+            cardsArray: cardsArray,
+            shuffledCardsArray: this.state.shuffledCardsArray,
+            gamesPlayed: this.state.gamesPlayed,
+            highScore: this.state.highScore,
+            score: this.state.score,
+            totalClickCount: this.state.totalClickCount
+          });
 
         } else { // Still playing.
 
-          // Check for win.
           eachCard.clickCount += 1;
           this.state.score += 1;
 
+          // Check for win.
+          if (this.state.score === 9) {
+            alert("You won! Please play again!");
+            this.state.score = 0;
+
+            // Reset clickCount on each card to 0.
+            // cardsArray.forEach(function (c, index) {
+            //   this[index].clickCount = 0;
+            // }, cardsArray);
+            cardsArray.map((c) => {
+              c.clickCount = 0;
+              return c;
+            });
+          }
+
+          this.state.shuffledCardsArray = shuffle(cardsArray.slice());
+
           this.setState({
             cardsArray: cardsArray,
-            score: this.state.score
+            shuffledCardsArray: this.state.shuffledCardsArray,
+            score: this.state.score,
+            totalClickCount: this.state.totalClickCount
           });
         }
 
@@ -174,35 +225,35 @@ class Game extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-4">
-              <Card imageUrl={this.state.cardsArray[0].imageUrl} id={this.state.cardsArray[0].id} onClick={() => this.handleCardClick(this.state.cardsArray[0])}></Card>
+              <Card imageUrl={this.state.shuffledCardsArray[0].imageUrl} id={this.state.shuffledCardsArray[0].id} onClick={() => this.handleCardClick(this.state.shuffledCardsArray[0])}></Card>
             </div>
             <div className="col-sm-4">
-              <Card imageUrl={this.state.cardsArray[1].imageUrl} id={this.state.cardsArray[1].id} onClick={() => this.handleCardClick(this.state.cardsArray[1])}></Card>
+              <Card imageUrl={this.state.shuffledCardsArray[1].imageUrl} id={this.state.shuffledCardsArray[1].id} onClick={() => this.handleCardClick(this.state.shuffledCardsArray[1])}></Card>
             </div>
             <div className="col-sm-4">
-              <Card imageUrl={this.state.cardsArray[2].imageUrl} id={this.state.cardsArray[2].id} onClick={() => this.handleCardClick(this.state.cardsArray[2])}></Card>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-4">
-              <Card imageUrl={this.state.cardsArray[3].imageUrl} id={this.state.cardsArray[3].id} onClick={() => this.handleCardClick(this.state.cardsArray[3])}></Card>
-            </div>
-            <div className="col-sm-4">
-              <Card imageUrl={this.state.cardsArray[4].imageUrl} id={this.state.cardsArray[4].id} onClick={() => this.handleCardClick(this.state.cardsArray[4])}></Card>
-            </div>
-            <div className="col-sm-4">
-              <Card imageUrl={this.state.cardsArray[5].imageUrl} id={this.state.cardsArray[5].id} onClick={() => this.handleCardClick(this.state.cardsArray[5])}></Card>
+              <Card imageUrl={this.state.shuffledCardsArray[2].imageUrl} id={this.state.shuffledCardsArray[2].id} onClick={() => this.handleCardClick(this.state.shuffledCardsArray[2])}></Card>
             </div>
           </div>
           <div className="row">
             <div className="col-sm-4">
-              <Card imageUrl={this.state.cardsArray[6].imageUrl} id={this.state.cardsArray[6].id} onClick={() => this.handleCardClick(this.state.cardsArray[6])}></Card>
+              <Card imageUrl={this.state.shuffledCardsArray[3].imageUrl} id={this.state.shuffledCardsArray[3].id} onClick={() => this.handleCardClick(this.state.shuffledCardsArray[3])}></Card>
             </div>
             <div className="col-sm-4">
-              <Card imageUrl={this.state.cardsArray[7].imageUrl} id={this.state.cardsArray[7].id} onClick={() => this.handleCardClick(this.state.cardsArray[7])}></Card>
+              <Card imageUrl={this.state.shuffledCardsArray[4].imageUrl} id={this.state.shuffledCardsArray[4].id} onClick={() => this.handleCardClick(this.state.shuffledCardsArray[4])}></Card>
             </div>
             <div className="col-sm-4">
-              <Card imageUrl={this.state.cardsArray[8].imageUrl} id={this.state.cardsArray[8].id} onClick={() => this.handleCardClick(this.state.cardsArray[8])}></Card>
+              <Card imageUrl={this.state.shuffledCardsArray[5].imageUrl} id={this.state.shuffledCardsArray[5].id} onClick={() => this.handleCardClick(this.state.shuffledCardsArray[5])}></Card>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-4">
+              <Card imageUrl={this.state.shuffledCardsArray[6].imageUrl} id={this.state.shuffledCardsArray[6].id} onClick={() => this.handleCardClick(this.state.shuffledCardsArray[6])}></Card>
+            </div>
+            <div className="col-sm-4">
+              <Card imageUrl={this.state.shuffledCardsArray[7].imageUrl} id={this.state.shuffledCardsArray[7].id} onClick={() => this.handleCardClick(this.state.shuffledCardsArray[7])}></Card>
+            </div>
+            <div className="col-sm-4">
+              <Card imageUrl={this.state.shuffledCardsArray[8].imageUrl} id={this.state.shuffledCardsArray[8].id} onClick={() => this.handleCardClick(this.state.shuffledCardsArray[8])}></Card>
             </div>
           </div>
 
