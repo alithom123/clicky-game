@@ -49,12 +49,12 @@ class Game extends React.Component {
     },
     {
       id: 8,
-      imageUrl: "/8mysql.png",
+      imageUrl: githubPageUrl + "/8mysql.png",
       clickCount: 0
     },
     {
       id: 9,
-      imageUrl: "/9github.png",
+      imageUrl: githubPageUrl + "/9github.png",
       clickCount: 0
     },
     ];
